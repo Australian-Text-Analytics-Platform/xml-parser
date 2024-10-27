@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "xml-extractor"
+name = "xml-parser"
 version = "0.1.0"
-description = "A tool for extracting metadata from XML-encoded texts"
+description = "A tool for parsing XML-encoded texts to obtain textual metadata"
 authors = ["Hamish Croser <hamish.croser@sydney.edu.au>"]
 readme = "README.md"
-repository = "https://github.com/Australian-Text-Analytics-Platform/xml-extractor"
+repository = "https://github.com/Australian-Text-Analytics-Platform/xml-parser"
 license = "MIT"
-packages = [{include = "xml_extractor"}]
+packages = [{include = "xml_parser"}]
 exclude = ["*/.ipynb_checkpoints/*", "*log.txt"]
 
 [tool.poetry.dependencies]

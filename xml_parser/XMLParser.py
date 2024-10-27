@@ -8,8 +8,8 @@ from atap_corpus._types import TCorpora
 from atap_corpus_loader import CorpusLoader
 
 
-class XMLExtractor(pn.viewable.Viewer):
-    LOGGER_NAME: str = "xml-extractor"
+class XMLParser(pn.viewable.Viewer):
+    LOGGER_NAME: str = "xml-parser"
 
     @staticmethod
     def setup_logger(logger_name: str, run_logger: bool):
@@ -43,7 +43,7 @@ class XMLExtractor(pn.viewable.Viewer):
     def __init__(self, corpus_loader: Optional[CorpusLoader] = None, run_logger: bool = False, **params):
         super().__init__(**params)
 
-        XMLExtractor.setup_logger(XMLExtractor.LOGGER_NAME, run_logger)
+        XMLParser.setup_logger(XMLParser.LOGGER_NAME, run_logger)
 
         if corpus_loader:
             self.corpus_loader: CorpusLoader = corpus_loader
