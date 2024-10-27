@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "xml-extractor"
+version = "0.1.0"
+description = "A tool for extracting metadata from XML-encoded texts"
+authors = ["Hamish Croser <hamish.croser@sydney.edu.au>"]
+readme = "README.md"
+repository = "https://github.com/Australian-Text-Analytics-Platform/xml-extractor"
+license = "MIT"
+packages = [{include = "xml_extractor"}]
+exclude = ["*/.ipynb_checkpoints/*", "*log.txt"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+panel = "~=1.4"
+atap-corpus-loader = "~=1.7.6"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "~=4.0.0"
+ipywidgets = "~=8.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
