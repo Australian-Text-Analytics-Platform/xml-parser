@@ -6,7 +6,7 @@ from atap_corpus._types import TCorpora
 from atap_corpus.corpus.corpus import DataFrameCorpus
 from atap_corpus_loader import CorpusLoader
 from pandas import DataFrame
-from panel.widgets import Select, Button
+from panel.widgets import Select, Button, Tqdm
 from regex import regex, Pattern, Match
 
 
@@ -15,6 +15,8 @@ class Parser(pn.viewable.Viewer):
     UTTERANCE_TEXT_PATTERN: Pattern = regex.compile(r"(?<=<u.*>).*(?=</u>)", cache_pattern=True)
     SPEAKER_PATTERN: Pattern = regex.compile(r"(?<=<u\s+who=\")([^\"]+)(?=\")", cache_pattern=True)
     XML_TAG_PATTERN: Pattern = regex.compile(r"<[^>]+>", cache_pattern=True)
+
+    SPEAKER_COL: str = 'speaker'
 
     def log(self, msg: str, level: int):
         logger = logging.getLogger(self.logger_name)
@@ -26,11 +28,14 @@ class Parser(pn.viewable.Viewer):
         self.logger_name: str = logger_name
         self.corpora: TCorpora = self.corpus_loader.get_mutable_corpora()
 
+        self.tqdm_obj = Tqdm(visible=False)
+
         self.corpus_selector = Select(name="Selected corpus")
         self.parse_corpus_button = Button(name="Parse XML", button_style='solid', button_type='primary')
         self.controls = pn.Column(
             self.corpus_selector,
-            self.parse_corpus_button
+            self.parse_corpus_button,
+            self.tqdm_obj
         )
 
         self.panel = pn.Row(
@@ -73,29 +78,34 @@ class Parser(pn.viewable.Viewer):
         return new_name
 
     def parse_corpus(self, *_):
+        self.tqdm_obj.visible = True
         try:
             if self.corpus_selector.value is None:
                 return
 
             corpus: DataFrameCorpus = self.corpus_selector.value
             corpus_df: DataFrame = corpus.to_dataframe()
+            expected_cols = list(corpus_df.columns) + [self.SPEAKER_COL]
             doc_col = corpus._COL_DOC
 
             dict_df: list[dict] = corpus_df.to_dict(orient='records')
             result_dicts = []
-            for idx, dict_row in enumerate(dict_df):
+            for dict_row in self.tqdm_obj(dict_df, desc="Parsing files", unit="documents"):
                 result_dicts.append(self._parse_xml_row(dict_row, doc_col))
             flattened = [item for sublist in result_dicts for item in sublist]
-            parsed_df = DataFrame(flattened)
+
+            parsed_df = DataFrame(flattened, columns=expected_cols)
 
             new_name: str = self._get_new_corpus_name(corpus.name)
             new_corpus: DataFrameCorpus = DataFrameCorpus.from_dataframe(parsed_df, col_doc=doc_col, name=new_name)
             self.corpora.add(new_corpus)
             self._update_corpus_list()
         except Exception as e:
+            self.tqdm_obj.visible = False
             self.log(str(traceback.format_exc()), logging.DEBUG)
             return
 
+        self.tqdm_obj.visible = False
         self.display_success(f"XML parsed successfully. Parsed corpus: {new_corpus.name}")
 
     def _parse_xml_row(self, row: dict, doc_col: str) -> list[dict]:
@@ -107,11 +117,14 @@ class Parser(pn.viewable.Viewer):
             row_data = row.copy()
 
             utterance: str = match.group()
-            speaker = self._retrieve_speaker(utterance)
+            speaker: str = self._retrieve_speaker(utterance)
+            if len(speaker) == 0:
+                continue
+
             utterance_text: str = self._remove_xml_tags(utterance)
 
             row_data[doc_col] = utterance_text
-            row_data['speaker'] = speaker
+            row_data[self.SPEAKER_COL] = speaker
 
             new_data.append(row_data)
 
