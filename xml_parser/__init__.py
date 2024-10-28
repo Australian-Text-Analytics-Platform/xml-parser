@@ -1,1 +1,1 @@
-from .XMLExtractor import XMLParser
+from .XMLParser import XMLParser

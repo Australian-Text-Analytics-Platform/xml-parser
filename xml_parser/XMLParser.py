@@ -7,6 +7,8 @@ import panel as pn
 from atap_corpus._types import TCorpora
 from atap_corpus_loader import CorpusLoader
 
+from xml_parser.Parser import Parser
+
 
 class XMLParser(pn.viewable.Viewer):
     LOGGER_NAME: str = "xml-parser"
@@ -50,6 +52,10 @@ class XMLParser(pn.viewable.Viewer):
         else:
             self.corpus_loader: CorpusLoader = CorpusLoader(root_directory='.', run_logger=run_logger)
         self.corpora: TCorpora = self.corpus_loader.get_mutable_corpora()
+
+        self.parser: Parser = Parser(self.corpus_loader, self.LOGGER_NAME)
+
+        self.corpus_loader.add_tab("XML Parser", self.parser.servable())
 
     def __panel__(self):
         return self.corpus_loader.servable()
