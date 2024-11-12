@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "xml-parser"
-version = "0.1.0"
+version = "0.1.1"
 description = "A tool for parsing XML-encoded texts to obtain textual metadata"
 authors = ["Hamish Croser <hamish.croser@sydney.edu.au>"]
 readme = "README.md"
@@ -12,7 +12,7 @@ exclude = ["*/.ipynb_checkpoints/*", "*log.txt"]
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
 panel = "~=1.4"
-atap-corpus-loader = "~=1.7.6"
+atap-corpus-loader = "~=1.8.0"
 regex = "~=2024.9.11"
 
 [tool.poetry.group.dev]
