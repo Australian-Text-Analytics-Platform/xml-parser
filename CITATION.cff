@@ -1,0 +1,26 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: XML Parser
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Hamish
+    family-names: Croser
+    email: hamish.croser@sydney.edu.au
+    affiliation: Sydney Informatics Hub
+repository-code: >-
+  https://github.com/Australian-Text-Analytics-Platform/xml-parser
+abstract: >-
+  The XML Parser is a tool for parsing XML-encoded texts to
+  obtain the content and speaker/author of utterances within
+  the text.
+keywords:
+  - xml
+  - corpus linguistics
+license: MIT
+version: 1.0.0
+date-released: '2024-12-16'
