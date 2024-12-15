@@ -4,10 +4,10 @@ The XML Parser is a tool for parsing XML-encoded texts to obtain the content and
 
 ### Inputs
 
-The XML corpus can be provided either as a collection of text files or as an Excel or CSV table.
+The XML corpus can be provided either as a collection of text files or as an Excel/CSV table.
 The loader currently supports loading a corpus from the following file types: txt, odt, docx, csv, tsv, xlsx, ods, xml
 
-Utterances must be contained by <u> tags and must include a 'who' attribute. Only utterances that follow this format will be included.
+Utterances must be contained by 'u' tags and must include a 'who' attribute. Only utterances that follow this format will be included.
 An example of valid utterances is as follows:
 
 ```xml
@@ -35,11 +35,11 @@ The csv and xlsx formats are structured as a table where each row represents an 
 3. Once the corpus is built, navigate to the 'XML Parser' tab. Here, select your corpus in the dropdown and click 'Parse XML'
 4. When parsing is complete, navigate to the 'Corpus Overview' tab to export the parsed corpus.
 
-Click [here](Corpus Loader User Guide.pdf) for more detailed instructions for the Corpus Loader.
+See the [user guide](Corpus%20Loader%20User%20Guide.pdf) for detailed instructions and hover over the tooltips in the loader for simplified instructions on how to load and build the corpus.
 
 ## Notes
 
-- The XML Parser keeps all corpus metadata but adds a column called 'speaker'. If there is already a metadata column called 'speaker' it will be overwritten
+- The XML Parser keeps all corpus metadata but adds a metadata called 'speaker'. If there is already a metadata column called 'speaker' it will be overwritten
 - When parsing utterances, the XML Parser will skip any utterance that does not have a speaker
 
 ## Demo
