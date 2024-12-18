@@ -7,7 +7,7 @@ The XML Parser is a tool for parsing XML-encoded texts to obtain the content and
 The XML corpus can be provided either as a collection of text files or as an Excel/CSV table.
 The loader currently supports loading a corpus from the following file types: txt, odt, docx, csv, tsv, xlsx, ods, xml
 
-Utterances must be contained by 'u' tags and must include a 'who' attribute. Only utterances that follow this format will be included.
+Following [Hardie (2014)](https://doi.org/10.2478/icame-2014-0004), utterances must be contained by 'u' tags and must include a 'who' attribute. Only utterances that follow this format will be included.
 An example of valid utterances is as follows:
 
 ```xml
@@ -30,21 +30,22 @@ The csv and xlsx formats are structured as a table where each row represents an 
 
 ## Instructions
 
-1. Upload your document files to the 'corpus_data' directory
-2. Run the cell below and use the Corpus Loader to build a corpus from your selected documents
-3. Once the corpus is built, navigate to the 'XML Parser' tab. Here, select your corpus in the dropdown and click 'Parse XML'
+1. Upload your document files to the 'corpus_data' directory.
+2. Run the cell below and use the Corpus Loader to build a corpus from your selected documents.
+3. Once the corpus is built, navigate to the 'XML Parser' tab. Here, select your corpus in the dropdown and click 'Parse XML'.
 4. When parsing is complete, navigate to the 'Corpus Overview' tab to export the parsed corpus.
 
 See the [user guide](Corpus%20Loader%20User%20Guide.pdf) for detailed instructions and hover over the tooltips in the loader for simplified instructions on how to load and build the corpus.
 
 ## Notes
 
-- The XML Parser keeps all corpus metadata but adds a metadata called 'speaker'. If there is already a metadata column called 'speaker' it will be overwritten
-- When parsing utterances, the XML Parser will skip any utterance that does not have a speaker
+- The XML Parser keeps all corpus metadata but adds a metadata called 'speaker'. If there is already a metadata column called 'speaker' it will be overwritten.
+- When parsing utterances, the XML Parser will skip any utterance that does not have a speaker.
+- When parsing utterances, the XML Parser will remove any XML tags within the contents of the utterance.
 
 ## Demo
 
-Click the button below to access a demo deployed on Binderhub
+Click the button below to access a demo deployed on Binderhub.
 
 [![Binder](https://binderhub.atap-binder.cloud.edu.au/badge_logo.svg)](https://binderhub.atap-binder.cloud.edu.au/v2/gh/Australian-Text-Analytics-Platform/xml-parser/main?labpath=parser.ipynb)
 
@@ -54,4 +55,4 @@ Click the button below to access a demo deployed on Binderhub
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
