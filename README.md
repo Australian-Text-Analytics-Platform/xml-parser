@@ -7,8 +7,8 @@ The XML Parser is a tool for parsing XML-encoded texts to obtain the content and
 The XML corpus can be provided either as a collection of text files or as an Excel/CSV table.
 The loader currently supports loading a corpus from the following file types: txt, odt, docx, csv, tsv, xlsx, ods, xml
 
-Following [Hardie (2014)](https://doi.org/10.2478/icame-2014-0004), utterances must be contained by 'u' tags and must include a 'who' attribute. Only utterances that follow this format will be included.
-An example of valid utterances is as follows:
+Following [Hardie (2014)](https://doi.org/10.2478/icame-2014-0004), utterances must be contained by 'u' tags and must include a 'who' attribute. Additionally, the 'who' attribute must be the first attribute in the 'u' tag.
+Only utterances that follow this format will be included. An example of valid utterances is as follows:
 
 ```xml
 <u who="PETER">Hello, world.</u>
