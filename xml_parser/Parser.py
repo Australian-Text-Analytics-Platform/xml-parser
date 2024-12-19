@@ -13,7 +13,7 @@ from regex import regex, Pattern, Match
 class Parser(pn.viewable.Viewer):
     WHOLE_UTTERANCE_PATTERN: Pattern = regex.compile(r"<u.*</u>", cache_pattern=True)
     UTTERANCE_TEXT_PATTERN: Pattern = regex.compile(r"(?<=<u.*>).*(?=</u>)", cache_pattern=True)
-    SPEAKER_PATTERN: Pattern = regex.compile(r"(?<=<u\s+who=\")([^\"]+)(?=\")", cache_pattern=True)
+    SPEAKER_PATTERN: Pattern = regex.compile(r"(?<=<u.*who=\")([^\"]+)(?=\")", cache_pattern=True)
     XML_TAG_PATTERN: Pattern = regex.compile(r"<[^>]+>", cache_pattern=True)
 
     SPEAKER_COL: str = 'speaker'
