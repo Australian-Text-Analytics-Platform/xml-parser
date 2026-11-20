@@ -1,5 +1,14 @@
 # XML Parser
 
+> [!WARNING]
+> **This tool is archived and no longer supported or maintained.**
+> It was developed by the Australian Text Analytics Platform (ATAP), the previous phase of the
+> Language Data Commons of Australia (LDaCA). It is preserved as a frozen Docker image so that it
+> keeps launching on BinderHub as it last worked, but it will not be updated or fixed.
+> For current LDaCA text analytics tools, please use
+> [Wordflow](https://australian-text-analytics-platform.github.io/LDaCa_Text_Analytics_Tools/) and
+> [LADAL](https://ladal.edu.au).
+
 The XML Parser is a tool for parsing XML-encoded texts to obtain the content and speaker/author of utterances within the text.
 
 ### Inputs
@@ -47,7 +56,7 @@ See the [user guide](Corpus%20Loader%20User%20Guide.pdf) for detailed instructio
 
 Click the button below to access a demo deployed on Binderhub.
 
-[![Binder](https://binderhub.rc.nectar.org.au/badge_logo.svg)](https://binderhub.rc.nectar.org.au/v2/gh/Australian-Text-Analytics-Platform/xml-parser/main?labpath=parser.ipynb)
+[![Binder](https://binderhub.rc.nectar.org.au/badge_logo.svg)](https://binderhub.rc.nectar.org.au/v2/gh/Australian-Text-Analytics-Platform/xml-parser/archived?labpath=parser.ipynb)
 
 ## Authors
 
@@ -56,3 +65,15 @@ Click the button below to access a demo deployed on Binderhub.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Run locally with Docker
+
+The frozen environment of this tool is published as the Docker image
+[`milysun/atap-xml-parser`](https://hub.docker.com/r/milysun/atap-xml-parser). With [Docker](https://docs.docker.com/get-docker/) installed, run:
+
+```bash
+docker run --rm -p 8888:8888 milysun/atap-xml-parser:990036ecf3c5 jupyter lab --ip=0.0.0.0 --port=8888
+```
+
+then open the `http://127.0.0.1:8888/lab?token=...` link printed in the terminal.
+On Apple Silicon Macs add `--platform linux/amd64` after `docker run`.
