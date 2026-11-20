@@ -1,0 +1,6 @@
+{
+  "imports": ["xml_parser", "atap_corpus_loader", "lxml"],
+  "notebooks": [
+    {"path": "parser.ipynb", "must_pass_cells": null, "timeout": 900}
+  ]
+}
